@@ -22,8 +22,6 @@ var Misaka = function() {
 
   // XOXOXO
   global.misaka = this; 
-  global.misaka._onMessageReceived = [];
-  global.misaka._onMessageReceived = [];
   // XOXOXO
 
   if(this.argv.help) {
@@ -133,10 +131,6 @@ Misaka.prototype.setupEvents = function(client) {
       var username = data.username,
           message = data.msg;
 
-  // XOXOXO
-      for (var i = 0; i < global.misaka._onMessageReceived.length; ++i)
-        global.misaka._onMessageReceived[i](data);
-  // XOXOXO
       misaka.print(username + ': ' + message);
 
       var db = misaka.getDbManager();
