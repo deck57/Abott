@@ -20,6 +20,12 @@ var __ = i18n.__;
 var Misaka = function() {
   this.initArgs();
 
+  // XOXOXO
+  global.misaka = this; 
+  global.misaka._onMessageReceived = [];
+  global.misaka._onMessageReceived = [];
+  // XOXOXO
+
   if(this.argv.help) {
     this.printHelp();
     process.exit();
@@ -106,7 +112,7 @@ Misaka.prototype.setupEvents = function(client) {
 
   this.initMessageQueue(client);
   // Consider room joined
-  this.fireRoomJoin(roomname);
+  this.fireRoomJoin(roomname); // XUXUXU
 
   console.log(__('Connected'));
 
@@ -127,6 +133,10 @@ Misaka.prototype.setupEvents = function(client) {
       var username = data.username,
           message = data.msg;
 
+  // XOXOXO
+      for (var i = 0; i < global.misaka._onMessageReceived.length; ++i)
+        global.misaka._onMessageReceived[i](data);
+  // XOXOXO
       misaka.print(username + ': ' + message);
 
       var db = misaka.getDbManager();
@@ -175,11 +185,11 @@ Misaka.prototype.setupEvents = function(client) {
     users.forEach(function(user) {
       usernames.push(user.username);
     });
-
     console.log(__('Users in room: %s', usernames.join(', ')));
   });
 
   userList.on('userAdded', function(user) {
+    // XOXOXO
     misaka.print('*** ' + __('%s has joined the room', user.username) + ' ***');
   });
 
