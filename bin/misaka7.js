@@ -183,7 +183,6 @@ Misaka.prototype.setupEvents = function(client) {
   });
 
   userList.on('userAdded', function(user) {
-    // XOXOXO
     misaka.print('*** ' + __('%s has joined the room', user.username) + ' ***');
   });
 
